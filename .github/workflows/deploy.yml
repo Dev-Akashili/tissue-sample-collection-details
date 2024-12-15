@@ -1,0 +1,102 @@
+name: Build and Deploy Backend to Azure
+
+on:
+  push:
+    branches:
+      - main
+    
+    paths:
+      - "app/backend/**"
+
+env:
+  BACKEND_PROJECT: ./app/backend/TSCD/TSCD.csproj
+  DOTNET_VERSION: 8.x
+
+jobs:
+  build_and_publish_backend:
+    name: Build and Publish Backend and Database Migrations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install dotnet-ef tools
+        run: |
+          dotnet new tool-manifest
+          dotnet tool install dotnet-ef
+
+      - name: Restore repo dotnet tools
+        run: dotnet tool restore
+        shell: bash
+
+      - name: Build dotnet
+        run: >-
+          dotnet build
+          ${{ env.BACKEND_PROJECT }}
+      
+      - name: Build migrations bundle
+        run: dotnet ef migrations bundle -p ${{ env.BACKEND_PROJECT}} -o ${{ github.workspace }}/efbundle -r linux-x64 --self-contained --configuration release
+        shell: bash
+
+      - name: Publish migrations bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: ${{ github.workspace }}/efbundle
+          name: migrations
+      
+      - name: dotnet publish
+        run: dotnet publish ${{ env.BACKEND_PROJECT }} -c release -o ${{ github.workspace }}
+        shell: bash
+
+      - name: Publish webapi artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: ${{ github.workspace }}
+          name: webapi
+  
+  deploy_backend:
+    name: Deploy Backend
+    needs: build_and_publish_backend
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Set Git Permissions
+        run: chmod -R +rwx .git
+      
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          path: migrations
+          name: migrations
+
+      - name: Run Migrations
+        run: |
+          chmod +x ./efbundle
+          ./efbundle --connection "${{ secrets.DB_CONNECTION_STRING }}"
+        working-directory: ${{ github.workspace }}/migrations
+        shell: bash
+
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v4
+        with:
+          path: webapi
+          name: webapi
+
+      - name: "Run Azure webapp deploy action using publish profile credentials"
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ env.AZURE_BACKEND_NAME }}
+          publish-profile: ${{ secrets.AZURE_BACKEND_PUBLISH_PROFILE  }}
+          package: ${{ github.workspace }}/webapi

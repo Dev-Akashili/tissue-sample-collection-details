@@ -1,0 +1,33 @@
+name: Build Frontend
+
+on:
+  push:
+    branches:
+      - main
+    
+    paths:
+      - "app/frontend/**"
+
+env:
+  FRONTEND_ROOT: ./app/frontend
+  NODE_VERSION: 20
+
+jobs:
+  build_frontend:
+    name: Build Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ${{ env.FRONTEND_ROOT }}
+
+      - name: Build
+        run: npm run build
+        working-directory: ${{ env.FRONTEND_ROOT }}
