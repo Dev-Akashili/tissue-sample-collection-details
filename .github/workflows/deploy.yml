@@ -6,7 +6,7 @@ on:
       - main
     
     paths:
-      - "app/backend/**"
+      - "app/TSCD/**"
 
 env:
   BACKEND_PROJECT: ./app/backend/TSCD/TSCD.csproj
