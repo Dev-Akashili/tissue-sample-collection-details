@@ -2,7 +2,10 @@
 import nextra from "nextra";
 
 const nextConfig = {
-  output: "export"
+  output: "export",
+  images: {
+    unoptimized: true
+  }
 };
 
 const withNextra = nextra({
