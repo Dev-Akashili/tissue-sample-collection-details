@@ -154,7 +154,6 @@ public class SampleService(ApplicationDbContext db)
             CollectionId = model.CollectionId,
             DonorCount = model.DonorCount,
             MaterialType = model.MaterialType,
-            LastUpdated = DateTimeOffset.Now
         };
 
         db.Samples.Add(sample);
@@ -191,7 +190,7 @@ public class SampleService(ApplicationDbContext db)
         // Update sample properties
         existingSample.DonorCount = model.DonorCount;
         existingSample.MaterialType = model.MaterialType;
-        existingSample.LastUpdated = DateTimeOffset.Now;
+        existingSample.LastUpdated = DateTimeOffset.UtcNow;
 
         await db.SaveChangesAsync();
 

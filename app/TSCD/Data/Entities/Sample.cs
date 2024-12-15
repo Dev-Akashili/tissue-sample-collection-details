@@ -25,5 +25,5 @@ public class Sample
     /// <summary>
     /// Date of the sample's most recent update.
     /// </summary>
-    public DateTimeOffset LastUpdated { get; set; } = DateTimeOffset.Now;
+    public DateTimeOffset LastUpdated { get; set; } = DateTimeOffset.UtcNow;
 }

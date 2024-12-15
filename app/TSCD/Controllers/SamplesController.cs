@@ -7,7 +7,7 @@ namespace TSCD.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class SampleController(SampleService sampleService): ControllerBase
+public class SamplesController(SampleService sampleService): ControllerBase
 {
     /// <summary>
     /// Retrieves a paginated list of samples
@@ -36,7 +36,7 @@ public class SampleController(SampleService sampleService): ControllerBase
     /// <param name="pageNumber">Page number for pagination</param>
     /// <param name="pageSize">Number of items per page</param>
     /// <returns>Paginated list of samples from the specified collection</returns>
-    [HttpGet("{collectionId}")]
+    [HttpGet("collection/{collectionId}")]
     [SwaggerResponse(200, Description = "Returns the list of samples for a specific collection")]
     public async Task<ActionResult<PaginatedResponse<SampleModel>>> ListByCollectionId(
         int collectionId,
