@@ -9,7 +9,7 @@ on:
       - "app/TSCD/**"
 
 env:
-  BACKEND_PROJECT: ./app/backend/TSCD/TSCD.csproj
+  BACKEND_PROJECT: ./app/TSCD/TSCD.csproj
   DOTNET_VERSION: 8.x
 
 jobs:
