@@ -13,7 +13,7 @@ export const Navbar = () => {
   const { setTheme } = useTheme();
 
   return (
-    <div className="h-16 fixed top-0 left-0 right-0 bg-white dark:bg-black px-6 lg:px-20 flex items-center justify-between shadow-md dark:border-b z-10">
+    <div className="h-16 fixed top-0 left-0 right-0 bg-white dark:bg-black px-6 lg:px-14 flex items-center justify-between shadow-md dark:border-b z-10">
       <Brand />
       <div className="h-full flex items-center justify-between space-x-4">
         <div className="h-full hidden lg:flex justify-between">
@@ -23,6 +23,7 @@ export const Navbar = () => {
               name={item.name}
               link={item.link}
               icon={item.icon}
+              external={item.external}
             />
           ))}
         </div>
@@ -60,11 +61,12 @@ interface NavLinkProps {
   name: string;
   link: string;
   icon?: React.ReactNode;
+  external: boolean;
 }
 
-const NavLink = ({ name, icon, link }: NavLinkProps) => {
+const NavLink = ({ name, icon, link, external }: NavLinkProps) => {
   return (
-    <Link href={link}>
+    <Link href={link} target={external ? "_blank" : "_self"}>
       <Button
         variant={"ghost"}
         className="h-full rounded-none text-sm font-semibold hover:bg-gray-300 dark:hover:bg-gray-600"
