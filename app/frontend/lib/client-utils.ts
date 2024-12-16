@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Converts an object into a query string.
  *
@@ -9,7 +10,7 @@
 export function objToQuery(obj: { [key: string]: any }): string {
   if (Object.keys(obj).length === 0) return "";
   let query = "";
-  for (let key in obj) {
+  for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
       const value = obj[key as keyof typeof obj];
       if (value !== undefined) {

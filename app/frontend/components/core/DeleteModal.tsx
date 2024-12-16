@@ -12,7 +12,6 @@ import {
 
 interface DeleteModalProps {
   text: string;
-  children: React.ReactNode | React.ReactNode[];
   handleDelete: React.MouseEventHandler<HTMLButtonElement>;
   refProp: React.RefObject<HTMLButtonElement>;
 }
