@@ -25,6 +25,21 @@ builder.Services
                 o => o.EnableRetryOnFailure());
     });
 
+// Configure Cors
+builder.Services.AddCors(options =>
+{
+    var frontendAppUrl = builder.Configuration["FrontendAppUrl"];
+    
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins(frontendAppUrl)
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials(); 
+        }); 
+});
+
 // Register services
 builder.Services
     .AddTransient<CollectionService>()
@@ -40,6 +55,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Use Cors
+app.UseCors("AllowSpecificOrigin");
 
 app.MapControllers();
 
