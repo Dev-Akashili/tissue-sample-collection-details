@@ -3,6 +3,7 @@ import { DataTableColumnHeader } from "@/components/data-table/DataTableColumnHe
 import { Sample } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import Action from "./actions";
+import { format } from "date-fns";
 
 export const columns: ColumnDef<Sample>[] = [
   {
@@ -40,6 +41,20 @@ export const columns: ColumnDef<Sample>[] = [
     ),
     enableHiding: false,
     enableSorting: true
+  },
+  {
+    id: "lastUpdated",
+    accessorKey: "lastUpdated",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last updated" />
+    ),
+    enableHiding: false,
+    enableSorting: true,
+    cell: ({ row }) => {
+      const { lastUpdated } = row.original;
+
+      return format(new Date(lastUpdated), "yyyy-MM-dd");
+    }
   },
   {
     id: "actions",
