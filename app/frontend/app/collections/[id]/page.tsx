@@ -11,7 +11,7 @@ import { ChevronLeft } from "lucide-react";
 
 interface CollectionSampleProps {
   params: Promise<{ id: string }>;
-  searchParams?: FilterParameters | Promise<FilterParameters>;
+  searchParams?: Promise<FilterParameters>;
 }
 
 export default async function CollectionSample({
