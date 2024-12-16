@@ -19,6 +19,14 @@ The easiest way is using the dotnet cli:
 - The above runs against the default local server, using the connection string in `appsettings.Development.json`
 - You can specify a connection string with the `--connection "<connection string>"` option
 
+```bash
+{
+  "ConnectionStrings": {
+    "Default": "Host=localhost;Username={your_username};Port=5432;Password={your_password};Database={your_database}"
+  }
+}
+```
+
 ## Backend App Configuration
 
 The app can be configured in any standard way an ASP.NET Core application can. Typically from an `appsettings.json`.
