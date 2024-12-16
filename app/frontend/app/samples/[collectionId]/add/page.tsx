@@ -5,15 +5,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { addOrUpdateSampleFormSchema } from "../validationSchema";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { FormInput } from "@/components/form";
+import { FormInput, FormLayout } from "@/components/form";
 import { useState } from "react";
 import { addSample } from "@/app/api";
 import { toast } from "sonner";
 import { useParams, useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
-import { FormLayout } from "@/components/form";
-import Spinner from "@/components/core/Spinner";
 import { handleRequestError } from "@/lib/api";
+import Spinner from "@/components/core/Spinner";
 
 export default function AddSample() {
   const router = useRouter();
@@ -24,7 +23,7 @@ export default function AddSample() {
   const form = useForm<z.infer<typeof addOrUpdateSampleFormSchema>>({
     resolver: zodResolver(addOrUpdateSampleFormSchema),
     defaultValues: {
-      donorCount: "",
+      donorCount: 0,
       materialType: ""
     }
   });
@@ -37,7 +36,7 @@ export default function AddSample() {
         donorCount: Number(values.donorCount),
         collectionId: Number(collectionId)
       });
-      router.push(`${ROUTES.collections.index}/${collectionId}`);
+      router.push(ROUTES.collections.id(collectionId));
       toast.success("Sample added successfully");
     } catch (error) {
       const { message } = handleRequestError(error);

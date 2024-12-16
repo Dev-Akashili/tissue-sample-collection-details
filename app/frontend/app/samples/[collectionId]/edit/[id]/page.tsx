@@ -4,16 +4,15 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { FormInput } from "@/components/form";
 import { useEffect, useState } from "react";
 import { getSample, updateSample } from "@/app/api";
 import { toast } from "sonner";
 import { useParams, useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
-import { FormLayout } from "@/components/form";
 import { handleRequestError } from "@/lib/api";
 import Spinner from "@/components/core/Spinner";
 import { addOrUpdateSampleFormSchema } from "../../validationSchema";
+import { FormInput, FormLayout } from "@/components/form";
 
 export default function UpdateCollection() {
   const params = useParams();
@@ -26,7 +25,7 @@ export default function UpdateCollection() {
   const form = useForm<z.infer<typeof addOrUpdateSampleFormSchema>>({
     resolver: zodResolver(addOrUpdateSampleFormSchema),
     defaultValues: {
-      donorCount: "",
+      donorCount: 0,
       materialType: ""
     }
   });
@@ -37,7 +36,7 @@ export default function UpdateCollection() {
       const { donorCount, materialType } = sample;
       if (sample.id) {
         form.reset({
-          donorCount: donorCount.toString(),
+          donorCount: donorCount,
           materialType: materialType
         });
       } else {
