@@ -30,7 +30,7 @@ export default async function Collections({
   const collections = await getCollections(query);
   const { count, list } = collections;
   const search = (
-    <DataTableSearch placeholder="Search by title or disease term" />
+    <DataTableSearch placeholder="Search by disease term or title" />
   );
   const action = (
     <Link href={ROUTES.collections.add}>
