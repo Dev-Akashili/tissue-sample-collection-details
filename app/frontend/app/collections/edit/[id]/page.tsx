@@ -60,7 +60,7 @@ export default function UpdateCollection() {
     } catch (error) {
       const { message } = handleRequestError(error);
       console.error(message);
-      toast.error("Updating collection failed!");
+      toast.error("Failed to update collection!");
     }
     setIsLoading(false);
   }

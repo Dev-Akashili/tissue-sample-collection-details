@@ -14,12 +14,12 @@ export const NAVBAR_LINKS: NavbarLink[] = [
   { name: "Samples", link: ROUTES.samples, icon: <MdScience /> },
   {
     name: "Documentation",
-    link: "https://dev-akashili.github.io/tissue-sample-collection-details/frontend",
+    link: "https://dev-akashili.github.io/tissue-sample-collection-details/",
     icon: <FaFileAlt />
   },
   {
     name: "GitHub",
-    link: "https://github.com/Dev-Akashili/tissue-sample-collection-details",
+    link: "https://github.com/Dev-Akashili/tissue-sample-collection-details/",
     icon: <FaGithub />
   }
 ];

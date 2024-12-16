@@ -34,7 +34,7 @@ export default function AddCollection() {
     try {
       await addCollection(values);
       router.push(ROUTES.collections.index);
-      toast.success("Collection updated successfully");
+      toast.success("Collection added successfully");
     } catch (error) {
       const { message } = handleRequestError(error);
       console.error(message);

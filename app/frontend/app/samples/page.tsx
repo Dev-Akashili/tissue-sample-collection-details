@@ -40,7 +40,7 @@ export default async function Samples({
 
   return (
     <div className="min-h-screen">
-      <div className="w-full md:w-[90%] lg:w-[80%] mx-auto py-28 px-2 md:px-0">
+      <div className="w-full md:w-[90%] lg:w-[80%] mx-auto py-14 md:py-28 px-2 md:px-0">
         <DataTable
           columns={columns}
           data={list}
