@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 import Brand from "./Brand";
 import { NAVBAR_LINKS } from "@/constants/Menu.constants";
 
-export const MobileNavMenu = ({ children }: { children: React.ReactNode }) => {
+const MobileNavMenu = ({ children }: { children: React.ReactNode }) => {
   return (
     <Sheet>
       <SheetTrigger asChild>{children}</SheetTrigger>
@@ -57,3 +57,5 @@ const MobileNavMenuItem = ({ name, link, icon }: MobileNavMenuItem) => {
     </Link>
   );
 };
+
+export default MobileNavMenu;

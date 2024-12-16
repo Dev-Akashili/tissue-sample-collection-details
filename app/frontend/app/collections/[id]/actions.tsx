@@ -1,6 +1,3 @@
-import { deleteSample } from "@/app/api";
-import { DeleteModal } from "@/components/core/DeleteModal";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +11,9 @@ import { Edit, Ellipsis, Trash } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 import { toast } from "sonner";
+import { deleteSample } from "@/app/api";
+import DeleteModal from "@/components/core/DeleteModal";
+import { Button } from "@/components/ui/button";
 
 interface ActionsProps {
   id: number;

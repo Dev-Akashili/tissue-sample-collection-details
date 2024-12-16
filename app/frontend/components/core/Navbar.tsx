@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import { FaRegMoon } from "react-icons/fa";
 import { LuSun } from "react-icons/lu";
 import { MdMenu } from "react-icons/md";
-import { MobileNavMenu } from "./MobileNavMenu";
+import MobileNavMenu from "./MobileNavMenu";
 
 export const Navbar = () => {
   const { setTheme } = useTheme();

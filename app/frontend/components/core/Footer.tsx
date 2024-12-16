@@ -1,4 +1,4 @@
-export default function Footer() {
+export const Footer = () => {
   return (
     <footer className="h-20 flex items-center justify-center">
       <div className="text-xs md:text-sm font-semibold text-center flex flex-col md:flex-row space-y-1 md:space-y-0 space-x-0 md:space-x-1">
@@ -8,4 +8,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

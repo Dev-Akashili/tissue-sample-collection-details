@@ -4,13 +4,12 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import { FormInput } from "@/components/form";
+import { FormInput, FormLayout } from "@/components/form";
 import { useState } from "react";
 import { addCollection } from "@/app/api";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
-import { FormLayout } from "@/components/form";
 import Spinner from "@/components/core/Spinner";
 import { handleRequestError } from "@/lib/api";
 import { addOrupdateCollectionFormSchema } from "../validationSchema";
@@ -38,7 +37,7 @@ export default function AddCollection() {
     } catch (error) {
       const { message } = handleRequestError(error);
       console.error(message);
-      toast.error("Adding collection failed!");
+      toast.error("Failed to add collection!");
     }
     setIsLoading(false);
   }

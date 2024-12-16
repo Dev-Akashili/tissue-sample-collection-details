@@ -1,4 +1,3 @@
-import { DeleteModal } from "@/components/core/DeleteModal";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -14,6 +13,7 @@ import { deleteCollection } from "../api";
 import { toast } from "sonner";
 import { useRef } from "react";
 import { handleRequestError } from "@/lib/api";
+import DeleteModal from "@/components/core/DeleteModal";
 
 export default function Action({ id }: { id: number }) {
   const deleteButtonRef = useRef<HTMLButtonElement | null>(null);

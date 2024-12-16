@@ -13,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Edit, Ellipsis, Trash } from "lucide-react";
 import Link from "next/link";
 import { ROUTES } from "@/constants/routes";
-import { DeleteModal } from "@/components/core/DeleteModal";
+import DeleteModal from "@/components/core/DeleteModal";
 
 interface ActionsProps {
   id: number;

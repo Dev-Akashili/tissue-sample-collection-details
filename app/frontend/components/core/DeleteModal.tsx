@@ -16,11 +16,7 @@ interface DeleteModalProps {
   refProp: React.RefObject<HTMLButtonElement>;
 }
 
-export const DeleteModal = ({
-  text,
-  handleDelete,
-  refProp
-}: DeleteModalProps) => {
+const DeleteModal = ({ text, handleDelete, refProp }: DeleteModalProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger ref={refProp}></AlertDialogTrigger>
@@ -48,3 +44,5 @@ export const DeleteModal = ({
     </AlertDialog>
   );
 };
+
+export default DeleteModal;
