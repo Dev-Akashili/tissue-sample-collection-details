@@ -10,6 +10,8 @@ Refer to the <a href="https://dev-akashili.github.io/tissue-sample-collection-de
 
 API documentation is available <a href="https://tscd-api.azurewebsites.net" target="_blank">here</a>, to explore all available endpoints, request/response schemas, and test API interactions directly from the browser.
 
+The backend is hosted on `Microsoft Azure` and the frontend is hosted on `Vercel`, and is currently live at <a href="https://tscd.vercel.app" target="_blank">tscd.vercel.app</a>
+
 # Screenshots
 
 ## Collections pages
