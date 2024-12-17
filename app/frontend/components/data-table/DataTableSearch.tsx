@@ -17,8 +17,10 @@ export const DataTableSearch = ({ placeholder }: DataTableSearchProps) => {
 
   useEffect(() => {
     const filterValue = searchParams.get("filter") || "";
-    setInputValue(filterValue);
-  }, [searchParams]);
+    if (inputValue === "") {
+      setInputValue(filterValue);
+    }
+  }, []);
 
   useEffect(() => {
     const newSearchParams = new URLSearchParams(searchParams.toString());
