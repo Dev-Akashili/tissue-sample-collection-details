@@ -43,7 +43,7 @@ export default function Actions({ id, collectionId }: ActionsProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <Link
-          href={`${ROUTES.samples}/${collectionId}/edit/${id}`}
+          href={ROUTES.samples.edit(id, collectionId)}
           className="inline-flex items-center h-full w-full"
         >
           <DropdownMenuItem className="cursor-pointer w-full">

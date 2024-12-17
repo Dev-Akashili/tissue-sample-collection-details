@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,14 +5,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { ROUTES } from "@/constants/routes";
-import { Edit, Ellipsis, Eye, Trash } from "lucide-react";
 import Link from "next/link";
-import { deleteCollection } from "../api";
 import { toast } from "sonner";
 import { useRef } from "react";
+import { deleteCollection } from "../api";
+import { ROUTES } from "@/constants/routes";
 import { handleRequestError } from "@/lib/api";
+import { Button } from "@/components/ui/button";
 import DeleteModal from "@/components/core/DeleteModal";
+import { Edit, Ellipsis, Eye, Trash } from "lucide-react";
 
 export default function Action({ id }: { id: number }) {
   const deleteButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -37,20 +37,14 @@ export default function Action({ id }: { id: number }) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <Link
-          href={`${ROUTES.collections.index}/${id}`}
-          className="inline-flex items-center h-full w-full"
-        >
-          <DropdownMenuItem className="cursor-pointer w-full">
+        <Link href={ROUTES.collections.samples(id)}>
+          <DropdownMenuItem className="cursor-pointer">
             <Eye /> View samples
           </DropdownMenuItem>
         </Link>
         <DropdownMenuSeparator />
-        <Link
-          href={`${ROUTES.collections.edit}/${id}`}
-          className="inline-flex items-center h-full w-full"
-        >
-          <DropdownMenuItem className="cursor-pointer w-full">
+        <Link href={ROUTES.collections.edit(id)}>
+          <DropdownMenuItem className="cursor-pointer">
             <Edit className="mr-2" /> Edit
           </DropdownMenuItem>
         </Link>
@@ -64,7 +58,7 @@ export default function Action({ id }: { id: number }) {
         >
           <Trash /> Delete
         </DropdownMenuItem>
-        <div className="absolute w-1 h-1 p-0 m-n1 overflow-hidden whitespace-nowrap border-0">
+        <div className="absolute w-1 h-1 p-0 m-1 overflow-hidden whitespace-nowrap border-0">
           <DeleteModal
             text={"collection"}
             handleDelete={handleDelete}

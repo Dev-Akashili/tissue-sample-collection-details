@@ -12,7 +12,7 @@ import { useParams, useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
 import { handleRequestError } from "@/lib/api";
 import Spinner from "@/components/core/Spinner";
-import { addOrupdateCollectionFormSchema } from "../../validationSchema";
+import { addOrUpdateCollectionFormSchema } from "../../validationSchema";
 
 export default function UpdateCollection() {
   const params = useParams();
@@ -21,8 +21,8 @@ export default function UpdateCollection() {
 
   const collectionId = Number(params.id);
 
-  const form = useForm<z.infer<typeof addOrupdateCollectionFormSchema>>({
-    resolver: zodResolver(addOrupdateCollectionFormSchema),
+  const form = useForm<z.infer<typeof addOrUpdateCollectionFormSchema>>({
+    resolver: zodResolver(addOrUpdateCollectionFormSchema),
     defaultValues: {
       diseaseTerm: "",
       title: ""
@@ -49,7 +49,7 @@ export default function UpdateCollection() {
   }, [collectionId, form, router]);
 
   async function onSubmit(
-    values: z.infer<typeof addOrupdateCollectionFormSchema>
+    values: z.infer<typeof addOrUpdateCollectionFormSchema>
   ) {
     setIsLoading(true);
     try {

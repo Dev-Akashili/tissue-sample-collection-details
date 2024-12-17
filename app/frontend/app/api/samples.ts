@@ -107,6 +107,6 @@ export async function deleteSample(id: number) {
     method: "DELETE"
   });
 
-  revalidatePath(ROUTES.samples);
+  revalidatePath(ROUTES.samples.index);
   return response;
 }

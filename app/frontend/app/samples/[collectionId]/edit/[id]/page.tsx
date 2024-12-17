@@ -41,7 +41,7 @@ export default function UpdateCollection() {
         });
       } else {
         toast.error("Failed to fetch sample");
-        router.push(ROUTES.collections.id(collectionId.toString()));
+        router.push(ROUTES.collections.samples(collectionId));
       }
     }
 
@@ -58,7 +58,7 @@ export default function UpdateCollection() {
         donorCount: Number(values.donorCount),
         collectionId: collectionId
       });
-      router.push(ROUTES.collections.id(collectionId.toString()));
+      router.push(ROUTES.collections.samples(collectionId));
       toast.success("Sample updated successfully");
     } catch (error) {
       const { message } = handleRequestError(error);

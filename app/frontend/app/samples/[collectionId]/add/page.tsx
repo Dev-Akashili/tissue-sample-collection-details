@@ -36,7 +36,7 @@ export default function AddSample() {
         donorCount: Number(values.donorCount),
         collectionId: Number(collectionId)
       });
-      router.push(ROUTES.collections.id(collectionId));
+      router.push(ROUTES.collections.samples(collectionId));
       toast.success("Sample added successfully");
     } catch (error) {
       const { message } = handleRequestError(error);

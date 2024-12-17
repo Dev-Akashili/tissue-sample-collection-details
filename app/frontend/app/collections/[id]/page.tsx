@@ -43,7 +43,7 @@ export default async function CollectionSample({
     <DataTableSearch placeholder="Search by donor count or material type" />
   );
   const action = (
-    <Link href={`${ROUTES.samples}/${collectionId}/add`}>
+    <Link href={ROUTES.samples.add(collectionId)}>
       <Button className="btn-custom">Add sample</Button>
     </Link>
   );

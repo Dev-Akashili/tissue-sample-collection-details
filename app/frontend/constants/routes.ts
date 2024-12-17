@@ -5,8 +5,12 @@ export const ROUTES = {
   collections: {
     index: `${basePath}/collections`,
     add: `${basePath}/collections/add`,
-    edit: `${basePath}/collections/edit`,
-    id: (id: string) => `${basePath}/collections/${id}`
+    edit: (id: number) => `${basePath}/collections/edit/${id}`,
+    samples: (id: string | number) => `${basePath}/collections/${id}`
   },
-  samples: `${basePath}/samples`
+  samples: {
+    index: `${basePath}/samples`,
+    add: (collectionId: number) => `${basePath}/samples/${collectionId}/add`,
+    edit: (id: number, collectionId: number) => `${basePath}/samples/${collectionId}/edit/${id}`
+  }
 };

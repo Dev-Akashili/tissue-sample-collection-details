@@ -23,7 +23,7 @@ export default function Home() {
             View collections
           </Button>
         </Link>
-        <Link href={ROUTES.samples} className="w-full md:w-[200px]">
+        <Link href={ROUTES.samples.index} className="w-full md:w-[200px]">
           <Button
             size={"lg"}
             className="w-full bg-teal-500 hover:bg-teal-400 hover:shadow-[6px_6px_0_0_#000]"

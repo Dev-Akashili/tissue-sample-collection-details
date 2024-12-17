@@ -20,7 +20,7 @@ export const NAVBAR_LINKS: NavbarLink[] = [
   },
   {
     name: "Samples",
-    link: ROUTES.samples,
+    link: ROUTES.samples.index,
     icon: <MdScience />,
     external: false
   },
