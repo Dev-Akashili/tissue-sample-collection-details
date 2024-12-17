@@ -13,7 +13,7 @@ export const DataTableSearch = ({ placeholder }: DataTableSearchProps) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [inputValue, setInputValue] = useState<string>("");
-  const debouncedInputValue = useDebounce(inputValue, 500);
+  const debouncedInputValue = useDebounce(inputValue, 200);
 
   useEffect(() => {
     const filterValue = searchParams.get("filter") || "";
