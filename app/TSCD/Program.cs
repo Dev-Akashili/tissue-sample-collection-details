@@ -67,6 +67,18 @@ builder.Services
 
 var app = builder.Build();
 
+// Seed data
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider
+        .GetRequiredService<ApplicationDbContext>();
+    
+    var seeder = new DataSeeder(db);
+
+    await seeder.SeedCollection();
+    await seeder.SeedSamples();
+}
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
