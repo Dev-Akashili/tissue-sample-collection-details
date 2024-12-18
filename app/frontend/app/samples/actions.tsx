@@ -62,7 +62,7 @@ export default function Actions({ id, collectionId }: ActionsProps) {
         </DropdownMenuItem>
         <div className="absolute w-1 h-1 p-0 m-n1 overflow-hidden whitespace-nowrap border-0">
           <DeleteModal
-            text={"collection"}
+            text={"sample"}
             handleDelete={handleDelete}
             refProp={deleteButtonRef as React.RefObject<HTMLButtonElement>}
           />
