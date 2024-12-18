@@ -22,7 +22,7 @@ The easiest way is using the dotnet cli:
 ```bash
 {
   "ConnectionStrings": {
-    "Default": "Host=localhost;Username={your_username};Port=5432;Password={your_password};Database={your_database}"
+    "Default": "Host=localhost;Username=postgres;Port=5432;Password=changeme;Database=tscd"
   }
 }
 ```
@@ -30,3 +30,11 @@ The easiest way is using the dotnet cli:
 ## Backend App Configuration
 
 The app can be configured in any standard way an ASP.NET Core application can. Typically from an `appsettings.json`.
+
+Remember to update your localhost url in `appsettings.Development.json`: 
+
+```bash
+{
+  "FrontendAppUrl" : "http://localhost:3000"
+}
+```
