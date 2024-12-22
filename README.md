@@ -2,28 +2,73 @@
 
 This project is an administrative web interface designed to manage a tissue sample directory. The system allows users to track collections of samples and the samples' details.
 
-The project was developed as part of the Developer Assessment for the Digital Research Service at the University of Nottingham.
+This repository consists of a full stack web application with a Next.js frontend and an ASP.NET backend web api that interacts with a postgreSQL database.
 
-## Getting Started (Developer Guide)
+## Getting Started
 
-Refer to the <a href="https://dev-akashili.github.io/tissue-sample-collection-details" target="_blank">documentation</a> to run this repo.
+## Prerequisites
 
-API documentation is available <a href="https://tscd-api.azurewebsites.net/docs" target="_blank">here</a>, to explore all available endpoints, request/response schemas, and test API interactions directly from the browser.
+1. **.NET SDK** `8.x`
+   - The API is .NET8
+2. Docker
 
-The backend is hosted on `Microsoft Azure` and the frontend is hosted on `Vercel`, and is currently live at <a href="https://tscd.vercel.app" target="_blank">tscd.vercel.app</a>
+# Frontend
 
-# Screenshots
+This uses `Next.js` + `TypeScript` + `Tailwind CSS`
 
-## Collections pages
+1. **Navigate to the project directory:**
 
-<img width="1440" alt="Screenshot 2024-12-16 at 20 03 34" src="https://github.com/user-attachments/assets/4e158cd0-09a5-4771-a963-f96f39c266be" />&nbsp;
-<img width="1440" alt="Screenshot 2024-12-16 at 20 03 59" src="https://github.com/user-attachments/assets/ee02b6a8-78c1-44b4-b418-a64c226f8bd7" />&nbsp;
-<img width="1440" alt="Screenshot 2024-12-16 at 20 04 17" src="https://github.com/user-attachments/assets/7eb72f90-8614-4d23-aad7-6b88032ba379" />&nbsp;
-<img width="1440" alt="Screenshot 2024-12-16 at 20 04 33" src="https://github.com/user-attachments/assets/2b3ffa5b-023f-4551-9609-4706fc9a91f9" />&nbsp;
+   `cd repo-directory/frontend`
 
-## Samples pages
+2. **Install dependencies using npm:**
 
-<img width="1440" alt="Screenshot 2024-12-16 at 20 05 00" src="https://github.com/user-attachments/assets/3e63114e-1e1f-447e-a7dd-84a703cf5805" />&nbsp;
-<img width="1440" alt="Screenshot 2024-12-16 at 20 05 11" src="https://github.com/user-attachments/assets/e209f30a-df60-4880-8581-40f6ef4077dc" />&nbsp;
-<img width="1440" alt="Screenshot 2024-12-16 at 20 05 23" src="https://github.com/user-attachments/assets/aa53492d-30d3-427b-a9fc-1643fb2da4b1" />&nbsp;
-<img width="1440" alt="Screenshot 2024-12-16 at 20 05 39" src="https://github.com/user-attachments/assets/c2a607f0-22ce-4dc2-89fa-fded45072831" />&nbsp;
+   `npm install`
+
+## Frontend App Configuration
+
+The frontend app can be configured in any standard way an Node application can. Typically from environment variables.
+
+```bash
+BACKEND_URL=http://localhost:7266
+```
+
+# Backend
+
+The application stack interacts with a PostgreSQL Server database, and uses code-first migrations for managing the database schema.
+
+The repository contains a `docker-compose` for the database, so just run `docker-compose up -d` to start it running.
+
+When setting up a new environment, or running a newer version of the codebase if there have been schema changes, you need to run migrations against your database server.
+
+The easiest way is using the dotnet cli:
+
+1. If you haven't already, install the local Entity Framework tooling
+
+- Anywhere in the repo: `dotnet tool restore`
+
+1. Navigate to the same directory as `TSCD.sln`
+1. Run migrations:
+
+- `dotnet ef database update --project app/TSCD`
+- The above runs against the default local server, using the connection string in `appsettings.Development.json`
+- You can specify a connection string with the `--connection "<connection string>"` option
+
+```bash
+{
+  "ConnectionStrings": {
+    "Default": "Host=localhost;Username=postgres;Port=5432;Password=changeme;Database=tscd"
+  }
+}
+```
+
+## Backend App Configuration
+
+The app can be configured in any standard way an ASP.NET Core application can. Typically from an `appsettings.json`.
+
+Remember to update your localhost url in `appsettings.Development.json`: 
+
+```bash
+{
+  "FrontendAppUrl" : "http://localhost:3000"
+}
+```
